@@ -7,12 +7,19 @@ import {
   View,
   ScrollView,
   FlatList,
+  SafeAreaView,  
+  Pressable,  
+  
 } from 'react-native';
 import MyComp from './my-comp';
 import React, {useState} from 'react';
+import ToDoList from './ToDoList';
+import ToDoForm from './ToDoForm';
+
 
 function App(): JSX.Element {
   const [inputText, setInputText] = useState('');
+  const [tasks, setTasks] = useState(['Do laundry', 'Go to gym', 'Walk cat']);
 
   let condition = true;
 
@@ -34,18 +41,23 @@ function App(): JSX.Element {
     // some code
   };
   return (
-    <ScrollView style={styles.container}>
-      <Text style={dynamicStyles}>Hello World!!</Text>
+    <View style={styles.container}>
+      {/* <Text style={dynamicStyles}>Hello World!!</Text> */}
       {/* <MyComp /> */}
-      <Image source={require('./first_pic.jpg')} style={styles.image} />
-      <TextInput
+      {/* <Image source={require('./first_pic.jpg')} style={styles.image} /> */}
+      {/* <TextInput
         placeholder="Please enter your name."
         value={inputText}
         onChangeText={handleTextInput}
-      />
-      <Button title="A button!" onPress={handlePress} />
+      /> */}
+      {/* <Button title="Submit" onPress={handlePress}/> */}
       {/* <FlatList data={data} renderItem={renderItem} /> */}
-    </ScrollView>
+      <Text style={dynamicStyles}>To do list</Text>
+      <ToDoForm/>
+      {/* <ToDoList/> */}
+      <ToDoList tasks={tasks} />      
+    </View>
+    
   );
 }
 
@@ -53,12 +65,17 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingTop: 20,
+    
+    
     //alignItems: 'center', // only work when using <View>, use <ScrollView> cannot use alignItems
   },
   text: {
     fontSize: 20,
     color: 'black',
-  },
+    textAlign: 'center',
+    fontWeight: 'bold',
+    fontsize: 30,
+    },
   textRed: {
     fontSize: 20,
     color: 'red',
@@ -66,9 +83,12 @@ const styles = StyleSheet.create({
   image: {
     width: 240,
     height: 150,
-    // width: 200,
-    // height: 150,
+    marginLeft: 80,
+    marginBottom: 20,
+    
   },
+  
+  
 });
 
 export default App;
